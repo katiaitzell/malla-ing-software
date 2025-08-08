@@ -1,0 +1,55 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f9f9fb;
+    margin: 0;
+    padding: 1rem;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    color: #5e3c82;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.materia {
+    padding: 10px;
+    border-radius: 8px;
+    color: white;
+    font-size: 0.9rem;
+    text-align: center;
+    cursor: not-allowed;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+.materia[data-status="available"] {
+    cursor: pointer;
+    opacity: 1;
+}
+
+.materia[data-status="completed"] {
+    background-color: #a2d2ff !important;
+    color: #000;
+}
+
+[data-area="matematicas"] { background-color: #c9a7e1; }
+[data-area="software"] { background-color: #8e6cc2; }
+[data-area="informatica"] { background-color: #5e3c82; }
+[data-area="ia"] { background-color: #a96dd4; }
+[data-area="humanidades"] { background-color: #d5b3e5; }
+[data-area="idiomas"] { background-color: #e0d3f2; }
+[data-area="optativa"] { background-color: #b39ddb; }
