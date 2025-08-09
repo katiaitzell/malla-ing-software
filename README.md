@@ -17,3 +17,5 @@ Este proyecto muestra una malla interactiva de 8 niveles para la carrera de Inge
 ## Créditos
 
 Creado por Katia Itzel con ayuda de ChatGPT ✨
+
+<!-- Forzar build de GitHub Pages -->
