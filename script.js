@@ -58,9 +58,16 @@ const materias = [
 ];
 
 const container = document.getElementById("malla");
+
 for (let i = 1; i <= 8; i++) {
     const col = document.createElement("div");
     col.classList.add("column");
+
+    const header = document.createElement("div");
+    header.classList.add("nivel-header");
+    header.textContent = `Nivel ${i}`;
+    col.appendChild(header);
+
     materias.filter(m => m.nivel === i).forEach(mat => {
         const div = document.createElement("div");
         div.classList.add("materia");
@@ -70,6 +77,7 @@ for (let i = 1; i <= 8; i++) {
         div.dataset.status = mat.requisitos.length === 0 ? "available" : "locked";
         col.appendChild(div);
     });
+
     container.appendChild(col);
 }
 
@@ -92,6 +100,19 @@ document.querySelectorAll(".materia").forEach(m => {
         if (m.dataset.status === "available") {
             m.dataset.status = "completed";
             actualizarDisponibilidad();
+        } else if (m.dataset.status === "completed") {
+            m.dataset.status = "available";
+            actualizarDisponibilidad();
+            materias.forEach(mat => {
+                if (mat.requisitos.includes(m.dataset.id)) {
+                    const dep = document.querySelector(`[data-id='${mat.id}']`);
+                    const cumplidos = mat.requisitos.every(r => {
+                        const prereq = document.querySelector(`[data-id='${r}']`);
+                        return prereq && prereq.dataset.status === "completed";
+                    });
+                    dep.dataset.status = cumplidos ? dep.dataset.status : "locked";
+                }
+            });
         }
     });
 });
